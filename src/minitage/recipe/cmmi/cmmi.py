@@ -361,8 +361,8 @@ class Recipe(common.MinitageCommonRecipe):
         os.chdir(self.build_dir)
         if not self.noconfigure:
             self._system(
-                    '%s %s%s %s' % (
-                        configure,
+                    './%s %s%s %s' % (
+                        os.path.basename(configure),
                         self.prefix_option,
                         self.prefix,
                         self.configure_options
