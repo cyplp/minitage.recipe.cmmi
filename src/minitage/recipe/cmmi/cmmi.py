@@ -152,7 +152,7 @@ class Recipe(common.MinitageCommonRecipe):
         # if wehave gmake setted, use gmake too.
         gnumake = 'make'
         if (
-            self.options.get('gmake', 
+            self.options.get('gmake',
                 self.buildout.get('part', {}).get('gmake', None)
             )
             and self.uname not in ['cygwin', 'linux']
@@ -364,7 +364,7 @@ class Recipe(common.MinitageCommonRecipe):
                     './%s %s%s %s' % (
                         os.path.basename(configure),
                         self.prefix_option,
-                        self.prefix,
+                        self.prefix.replace(' ', '\ '),
                         self.configure_options
                     )
                 )
@@ -410,7 +410,7 @@ class Recipe(common.MinitageCommonRecipe):
         self.make_options = ''
         if not self.noinstall:
             if not os.path.exists(tmp):
-                os.makedirs(tmp) 
+                os.makedirs(tmp)
             if os.path.isdir(self.prefix):
                 copy_tree(self.prefix, tmp)
             if not self.install_in_place:
